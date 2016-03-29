@@ -1,0 +1,717 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<medi:edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.6.xsd">
+
+	<medi:description name="834 EDI TO XML" version="1.0" />
+
+	<medi:delimiters segment="&#10;" field="*" component="^"
+		sub-component="#" escape="~"/>
+
+	<medi:segments xmltag="FILE">
+
+		<medi:segment minOccurs="0" maxOccurs="-1" segcode="ISA" xmltag="ISAHeader" ignoreUnmappedFields="true" truncatable="true">
+			<medi:field xmltag="AuthorziationInformationQualifier" />
+			<medi:field xmltag="AuthorziationInformation" />
+			<medi:field xmltag="SecurityInformationQualifier" />
+			<medi:field xmltag="InterchangeIDQualifier" />
+			<medi:field xmltag="InterchangeSenderID" />
+			<medi:field xmltag="InterchangeIDQualifier" />
+			<medi:field xmltag="InterchangeReceiverID" />
+			<medi:field xmltag="InterchangeDate" />
+			<medi:field xmltag="InterchangeTime" />
+			<medi:field xmltag="RepetitionSeparator" />
+			<medi:field xmltag="InterchangeControlVersionNumber" />
+			<medi:field xmltag="InterchangeControlNumber" />
+			<medi:field xmltag="AcknowledgmentRequested" />
+			<medi:field xmltag="InterchangeUsageIndicator" />
+			<medi:field xmltag="ComponentElementSeparator" />
+		</medi:segment>
+
+		<medi:segmentGroup xmltag="BenefitEnrollmentRequest" maxOccurs="-1">
+			<medi:segment minOccurs="0" maxOccurs="-1" segcode="GS"	xmltag="BenefitEnrollmentRequestHeader" ignoreUnmappedFields="true" truncatable="true">
+			    <medi:field xmltag="FunctionalIDCode" />
+			   <medi:field xmltag="ApplicationSendsCode" />
+			   <medi:field xmltag="ApplicationRecsCode" />
+			   <medi:field xmltag="Date" />
+			   <medi:field xmltag="Time" />
+			   <medi:field xmltag="GroupCtrlNumber" />
+			   <medi:field xmltag="ResponsibleAgencyCode" />
+			   <medi:field xmltag="ReleaseIDCode" />
+			    </medi:segment>
+			   
+			<!-- ST Transaction starts Here -->
+			<medi:segmentGroup xmltag="BenefitEnrollmentMaintenance" maxOccurs="-1">
+			    	<medi:segment minOccurs="0" maxOccurs="-1" segcode="ST"	xmltag="BenefitEnrollmentMaintenanceHeader" ignoreUnmappedFields="true" truncatable="true">
+			    	      	<medi:field xmltag="TransactionSetIdentifierCode" />
+			   				<medi:field xmltag="TransactionSetControlNumber" />
+			  				<medi:field xmltag="ImplementationConventionReference" />
+			    	</medi:segment>
+			    <medi:segment minOccurs="0" segcode="BGN" xmltag="Begin" ignoreUnmappedFields="true">
+				      <medi:field xmltag="TSPurposeCode" />
+				      <medi:field xmltag="ReferenceIdent" />
+				      <medi:field xmltag="Date" />
+				      <medi:field xmltag="Time" />
+				      <medi:field xmltag="TimeCode" />
+				      <medi:field xmltag="ReferenceIdent" />
+				      <medi:field xmltag="TransactionTypeCode" />
+				      <medi:field xmltag="ActionCode" />
+				</medi:segment>
+				
+				<medi:segment minOccurs="0" segcode="REF" xmltag="TransactionSetPolicyNumber" ignoreUnmappedFields="true">
+				      <medi:field xmltag="ReferenceIdentQual" />
+				      <medi:field xmltag="ReferenceIdent" />
+				</medi:segment>
+				
+				<medi:segmentGroup xmltag="FileEffectiveDates" minOccurs="0" maxOccurs="-1">
+				 <medi:segment minOccurs="0" segcode="DTP" xmltag="FileEffectiveDate" ignoreUnmappedFields="true">
+				      <medi:field xmltag="DateTimeQualifier" />
+				      <medi:field xmltag="DateTimePeriodFormatQualifier" />
+				      <medi:field xmltag="DateTimePeriod" />
+				</medi:segment>
+				</medi:segmentGroup>
+				
+				<medi:segmentGroup xmltag="TransactionSetControlTotals" minOccurs="0" maxOccurs="-1">
+				 <medi:segment minOccurs="0" segcode="QTY" xmltag="TransactionSetControlTotal" ignoreUnmappedFields="true">
+				      <medi:field xmltag="QuantityQualifier" />
+				      <medi:field xmltag="Quantity" />
+				</medi:segment>
+				</medi:segmentGroup>
+				
+				<!-- L1000 -->
+				 <medi:segment minOccurs="0" segcode="N1" xmltag="Sponsor" ignoreUnmappedFields="true"  truncatable="true">
+				      <medi:field xmltag="EntityIDCode" />
+				      <medi:field xmltag="Name" />
+				      <medi:field xmltag="IDCodeQualifier" />
+				      <medi:field xmltag="IDCode" />
+				</medi:segment>
+				
+				 <medi:segment minOccurs="0" segcode="N1" xmltag="Payer" ignoreUnmappedFields="true"  truncatable="true">
+				      <medi:field xmltag="EntityIDCode" />
+				      <medi:field xmltag="Name" />
+				      <medi:field xmltag="IDCodeQualifier" />
+				      <medi:field xmltag="IDCode" />
+				</medi:segment>
+				
+				 <medi:segment minOccurs="0" segcode="N1" xmltag="Agent" ignoreUnmappedFields="true"  truncatable="true">
+				      <medi:field xmltag="EntityIDCode" />
+				      <medi:field xmltag="Name" />
+				      <medi:field xmltag="IDCodeQualifier" />
+				      <medi:field xmltag="IDCode" />
+				      <medi:segment minOccurs="0" segcode="ACT" xmltag="Act" ignoreUnmappedFields="true"  truncatable="true">
+				      <medi:field xmltag="AccountNumber" />
+				      <medi:field xmltag="Name" />
+				      <medi:field xmltag="IDCodeQualifier" />
+				      <medi:field xmltag="IDCode" />
+				      <medi:field xmltag="AcctNumberQualifier" />
+				      <medi:field xmltag="AccountNumber" />
+				</medi:segment>
+				</medi:segment>
+				 <medi:segment minOccurs="0" segcode="N1" xmltag="Broker" ignoreUnmappedFields="true"  truncatable="true">
+				      <medi:field xmltag="EntityIDCode" />
+				      <medi:field xmltag="Name" />
+				      <medi:field xmltag="IDCodeQualifier" />
+				      <medi:field xmltag="IDCode" />
+				      <medi:segment minOccurs="0" segcode="ACT" xmltag="Act" ignoreUnmappedFields="true"  truncatable="true">
+				      <medi:field xmltag="AccountNumber" />
+				      <medi:field xmltag="Name" />
+				      <medi:field xmltag="IDCodeQualifier" />
+				      <medi:field xmltag="IDCode" />
+				      <medi:field xmltag="AcctNumberQualifier" />
+				      <medi:field xmltag="AccountNumber" />
+				</medi:segment>
+				</medi:segment>
+				
+				
+				
+				<!-- Member Iteration - Loop 2000 -->
+				<medi:segmentGroup xmltag="Member" minOccurs="0" maxOccurs="-1">
+				    <medi:segment minOccurs="0" maxOccurs="-1" segcode="INS"	xmltag="MemberInformation" ignoreUnmappedFields="true" truncatable="true">
+			    	      	<medi:field xmltag="SubscriberIndicator" />
+			    	      	<medi:field xmltag="IndividualRelationshipCode" />
+			    	      	<medi:field xmltag="MaintenanceTypeCode" />
+			    	      	<medi:field xmltag="MaintenanceReasonCode" />
+			    	      	<medi:field xmltag="BenefitStatusCode" truncatable="true" />
+			    	      	<medi:field xmltag="COBRAQualifyingEventCode" truncatable="true"/>
+			    	      	<medi:field xmltag="DeathDate" truncatable="true"/>
+			    	      	<medi:field xmltag="EmploymentStatusCode" truncatable="true"/>
+					</medi:segment>
+						
+						<medi:segmentGroup xmltag="MemberIdentifiers" minOccurs="0" maxOccurs="-1">
+								<medi:segment minOccurs="0" segcode="REF" xmltag="MemberIdentifier" ignoreUnmappedFields="true"  truncatable="true">
+								<medi:field xmltag="ReferenceIdentQual" />
+								<medi:field xmltag="ReferenceIdent" />
+							</medi:segment>
+						</medi:segmentGroup>
+						
+						<medi:segmentGroup xmltag="MemberLevelDates" minOccurs="0" maxOccurs="-1">
+				 			<medi:segment minOccurs="0" segcode="DTP" xmltag="Dtp" ignoreUnmappedFields="true"  truncatable="true">
+				   			   <medi:field xmltag="DateTimeQualifier" />
+				      			<medi:field xmltag="DateTimePeriodFormatQualifier" />
+				       			<medi:field xmltag="DateTimePeriod" />
+							</medi:segment>
+						</medi:segmentGroup>	
+					
+					<!-- 2100A -->	
+					<medi:segment minOccurs="0" maxOccurs="-1" segcode="NM1"	xmltag="MemberName" ignoreUnmappedFields="true" truncatable="true">
+			    	      	<medi:field xmltag="EntityIDCode" />
+			    	      	<medi:field xmltag="EntityTypeQualfier" />
+			    	      	<medi:field xmltag="NameLast" />
+			    	      	<medi:field xmltag="NameFirst"/>
+			    	      	<medi:field xmltag="NameMiddle"/>
+			    	      	<medi:field xmltag="NamePrefix"/>
+			    	      	<medi:field xmltag="NameSuffix"/>
+			    	      	<medi:field xmltag="IDCodeQualifier"/>
+			    	      	<medi:field xmltag="ID"/>
+					</medi:segment>	
+					
+					<medi:segment minOccurs="0" maxOccurs="-1" segcode="PER"	xmltag="MemberCommunicationInformation" ignoreUnmappedFields="true" truncatable="true">
+			    	      	<medi:field xmltag="ContactFunctCode" />
+			    	      	<medi:field xmltag="Name" />
+			    	      	<medi:field xmltag="CommunicationNumberQualifier" />
+			    	      	<medi:field xmltag="CommunicationNumber"/>
+			    	      	<medi:field xmltag="CommunicationNumberQualifier"/>
+			    	      	<medi:field xmltag="CommunicationNumber"/>
+			    	      	<medi:field xmltag="CommunicationNumberQualifier"/>
+			    	      	<medi:field xmltag="CommunicationNumber"/>
+					</medi:segment>	
+					
+					<medi:segment minOccurs="0" maxOccurs="-1" segcode="N3" xmltag="MemberResidenceStreetAddress" ignoreUnmappedFields="true" truncatable="true">
+			    	      	<medi:field xmltag="AddressInformation1" />
+			    	      	<medi:field xmltag="AddressInformation2" />
+					</medi:segment>
+					
+					<medi:segment minOccurs="0" maxOccurs="-1" segcode="N4" xmltag="MemberResidenceCityStateZip" ignoreUnmappedFields="true" truncatable="true">
+			    	      	<medi:field xmltag="CityName" />
+			    	      	<medi:field xmltag="State" />
+			    	      	<medi:field xmltag="Postal" />
+			    	      	<medi:field xmltag="Country" />
+			    	      	<medi:field xmltag="LocationQualifier" />
+			    	      	<medi:field xmltag="LocationIdentifier" />
+			    	      	<medi:field xmltag="CountrySubCode" />
+					</medi:segment>
+					
+					<medi:segment minOccurs="0" maxOccurs="-1" segcode="DMG" xmltag="MemberResidenceDemographics" ignoreUnmappedFields="true" truncatable="true">
+			    	      	<medi:field xmltag="DateTimeFormatQual" />
+			    	      	<medi:field xmltag="DateTimePeriod" />
+			    	      	<medi:field xmltag="GenderCode" />
+			    	      	<medi:field xmltag="MartialStatusCode" />
+			    	      	<medi:field xmltag="RaceEtinicity" />
+			    	      	<medi:field xmltag="CitizenshipStatusCode" />
+			    	      	<medi:field xmltag="CountryCode" />
+			    	      	<medi:field xmltag="VerifCode" />
+			    	      	<medi:field xmltag="Quantity" />
+			    	      	<medi:field xmltag="CodeListQualCode" />
+			    	      	<medi:field xmltag="IndustryCode" />
+					</medi:segment>	
+							
+					<medi:segmentGroup xmltag="EmploymentStatus" minOccurs="0" maxOccurs="-1">
+				 			<medi:segment minOccurs="0" segcode="EC" xmltag="Class"  ignoreUnmappedFields="true"  truncatable="true">
+				   			   	<medi:field xmltag="EmploymentClassCode1" />
+				      			<medi:field xmltag="EmploymentClassCode2" />
+				       			<medi:field xmltag="EmploymentClassCode3" />
+							</medi:segment>
+						</medi:segmentGroup>		
+							
+					<medi:segment minOccurs="0" maxOccurs="-1" segcode="ICM" xmltag="MemberIncome" ignoreUnmappedFields="true" truncatable="true">
+			    	      	<medi:field xmltag="FrequencyCode" />
+			    	      	<medi:field xmltag="MonetaryAmount" />
+			    	      	<medi:field xmltag="Quantity" />
+			    	      	<medi:field xmltag="LocationIdentifier" />
+			    	      	<medi:field xmltag="SalaryGrade" />
+					</medi:segment>			
+							
+					<medi:segmentGroup xmltag="MemberPolicyAmounts" minOccurs="0" maxOccurs="-1">
+				 			<medi:segment minOccurs="0" segcode="AMT" xmltag="MemberPolicyAmount" ignoreUnmappedFields="true" truncatable="true">
+				   			   <medi:field xmltag="AmountQualCode" />
+				      			<medi:field xmltag="MonetaryAmount" />
+							</medi:segment>
+					</medi:segmentGroup>		
+							
+					<medi:segment minOccurs="0" segcode="HLH" xmltag="MemberHealthInformation" ignoreUnmappedFields="true" truncatable="true">
+				   			   <medi:field xmltag="HealthRelateCode" />
+				      			<medi:field xmltag="Height" />
+				      			<medi:field xmltag="Weight" />
+					</medi:segment>	
+					
+					<medi:segmentGroup xmltag="MemberLanguages" minOccurs="0" maxOccurs="-1">
+						<medi:segment minOccurs="0" segcode="LUI" xmltag="MemberLanguage" ignoreUnmappedFields="true" truncatable="true">
+									<medi:field xmltag="IDCodeQualifier" />
+					   			   	<medi:field xmltag="IDCode" />
+					      			<medi:field xmltag="Description" />
+					      			<medi:field xmltag="LangIndica" />
+						</medi:segment>		
+					</medi:segmentGroup>
+							
+					<!-- 2100B -->
+					<medi:segment minOccurs="0" maxOccurs="-1" segcode="NM1"	xmltag="IncorrectMemberName" ignoreUnmappedFields="true" truncatable="true">
+			    	      	<medi:field xmltag="EntityIDCode" />
+			    	      	<medi:field xmltag="EntityTypeQualfier" />
+			    	      	<medi:field xmltag="NameLast" />
+			    	      	<medi:field xmltag="NameFirst"/>
+			    	      	<medi:field xmltag="NameMiddle"/>
+			    	      	<medi:field xmltag="NamePrefix"/>
+			    	      	<medi:field xmltag="NameSuffix"/>
+			    	      	<medi:field xmltag="IDCodeQualifier"/>
+			    	      	<medi:field xmltag="ID"/>
+					</medi:segment>			
+					<medi:segment minOccurs="0" maxOccurs="-1" segcode="DMG" xmltag="IncorrectMemberDemographics" ignoreUnmappedFields="true" truncatable="true">
+			    	      	<medi:field xmltag="DateTimeFormatQual" />
+			    	      	<medi:field xmltag="DateTimePeriod" />
+			    	      	<medi:field xmltag="GenderCode" />
+			    	      	<medi:field xmltag="MartialStatusCode" />
+			    	      	<medi:field xmltag="RaceEtinicity" />
+			    	      	<medi:field xmltag="CitizenshipStatusCode" />
+			    	      	<medi:field xmltag="CountryCode" />
+			    	      	<medi:field xmltag="VerifCode" />
+			    	      	<medi:field xmltag="Quantity" />
+			    	      	<medi:field xmltag="CodeListQualCode" />
+			    	      	<medi:field xmltag="IndustryCode" />
+					</medi:segment>		
+					
+					<!-- 2100C -->		
+					<medi:segment minOccurs="0" maxOccurs="-1" segcode="NM1"	xmltag="MemberMailingAddress" ignoreUnmappedFields="true" truncatable="true">
+			    	      	<medi:field xmltag="EntityIDCode" />
+			    	      	<medi:field xmltag="EntityTypeQualfier" />
+					</medi:segment>			
+					<medi:segment minOccurs="0" maxOccurs="-1" segcode="N3" xmltag="MemberMailingStreetAddress" ignoreUnmappedFields="true" truncatable="true">
+			    	      	<medi:field xmltag="AddressInformation1" />
+			    	      	<medi:field xmltag="AddressInformation2" />
+					</medi:segment>		
+					<medi:segment minOccurs="0" maxOccurs="-1" segcode="N4" xmltag="MemberMailingCityStateZip" ignoreUnmappedFields="true" truncatable="true">
+			    	      	<medi:field xmltag="CityName" />
+			    	      	<medi:field xmltag="State" />
+			    	      	<medi:field xmltag="Postal" />
+			    	      	<medi:field xmltag="Country" />
+			    	      	<medi:field xmltag="LocationQualifier" />
+			    	      	<medi:field xmltag="LocationIdentifier" />
+			    	      	<medi:field xmltag="CountrySubCode" />
+					</medi:segment>
+					
+					<!-- 2100D -->
+					<medi:segmentGroup xmltag="MemberEmployers" minOccurs="0" maxOccurs="-1">
+					<medi:segment minOccurs="0" maxOccurs="-1" segcode="NM1"	xmltag="MemberEmployer" ignoreUnmappedFields="true" truncatable="true">
+			    	      	<medi:field xmltag="EntityIDCode" />
+			    	      	<medi:field xmltag="EntityTypeQualfier" />
+			    	      	<medi:field xmltag="NameLast" />
+			    	      	<medi:field xmltag="NameFirst"/>
+			    	      	<medi:field xmltag="NameMiddle"/>
+			    	      	<medi:field xmltag="NamePrefix"/>
+			    	      	<medi:field xmltag="NameSuffix"/>
+			    	      	<medi:field xmltag="IDCodeQualifier"/>
+			    	      	<medi:field xmltag="ID"/>
+					</medi:segment>		
+							
+					<medi:segment minOccurs="0" maxOccurs="-1" segcode="PER"	xmltag="MemberEmployerCommunicationInformation" ignoreUnmappedFields="true" truncatable="true">
+			    	      	<medi:field xmltag="ContactFunctCode" />
+			    	      	<medi:field xmltag="Name" />
+			    	      	<medi:field xmltag="CommunicationNumberQualifier" />
+			    	      	<medi:field xmltag="CommunicationNumber"/>
+			    	      	<medi:field xmltag="CommunicationNumberQualifier"/>
+			    	      	<medi:field xmltag="CommunicationNumber"/>
+			    	      	<medi:field xmltag="CommunicationNumberQualifier"/>
+			    	      	<medi:field xmltag="CommunicationNumber"/>
+					</medi:segment>			
+					
+					<medi:segment minOccurs="0" maxOccurs="-1" segcode="N3" xmltag="MemberEmployerStreetAddress" ignoreUnmappedFields="true" truncatable="true">
+			    	      	<medi:field xmltag="AddressInformation1" />
+			    	      	<medi:field xmltag="AddressInformation2" />
+					</medi:segment>
+					<medi:segment minOccurs="0" maxOccurs="-1" segcode="N4" xmltag="MemberEmployerCityStateZip" ignoreUnmappedFields="true" truncatable="true">
+			    	      	<medi:field xmltag="CityName" />
+			    	      	<medi:field xmltag="State" />
+			    	      	<medi:field xmltag="Postal" />
+			    	      	<medi:field xmltag="Country" />
+			    	      	<medi:field xmltag="LocationQualifier" />
+			    	      	<medi:field xmltag="LocationIdentifier" />
+			    	      	<medi:field xmltag="CountrySubCode" />
+					</medi:segment>
+					</medi:segmentGroup>
+					
+					<!-- 2100E -->
+					<medi:segmentGroup xmltag="MemberSchools" minOccurs="0" maxOccurs="-1">
+						<medi:segment minOccurs="0" maxOccurs="-1" segcode="NM1" xmltag="MemberSchool" ignoreUnmappedFields="true" truncatable="true">
+				    	      	<medi:field xmltag="EntityIDCode" />
+				    	      	<medi:field xmltag="EntityTypeQualfier" />
+				    	      	<medi:field xmltag="NameLast" />
+				    	      	<medi:field xmltag="NameFirst"/>
+				    	      	<medi:field xmltag="NameMiddle"/>
+				    	      	<medi:field xmltag="NamePrefix"/>
+				    	      	<medi:field xmltag="NameSuffix"/>
+				    	      	<medi:field xmltag="IDCodeQualifier"/>
+				    	      	<medi:field xmltag="ID"/>
+						</medi:segment>	
+						
+						<medi:segment minOccurs="0" maxOccurs="-1" segcode="PER" xmltag="MemberSchoolCommunicationInformation" ignoreUnmappedFields="true" truncatable="true">
+				    	      	<medi:field xmltag="ContactFunctCode" />
+				    	      	<medi:field xmltag="Name" />
+				    	      	<medi:field xmltag="CommunicationNumberQualifier" />
+				    	      	<medi:field xmltag="CommunicationNumber"/>
+				    	      	<medi:field xmltag="CommunicationNumberQualifier"/>
+				    	      	<medi:field xmltag="CommunicationNumber"/>
+				    	      	<medi:field xmltag="CommunicationNumberQualifier"/>
+				    	      	<medi:field xmltag="CommunicationNumber"/>
+						</medi:segment>	
+						<medi:segment minOccurs="0" maxOccurs="-1" segcode="N3" xmltag="MemberSchoolStreetAddress" ignoreUnmappedFields="true" truncatable="true">
+				    	      	<medi:field xmltag="AddressInformation1" />
+				    	      	<medi:field xmltag="AddressInformation2" />
+						</medi:segment>
+						
+						<medi:segment minOccurs="0" maxOccurs="-1" segcode="N4" xmltag="MemberSchoolCityStateZip" ignoreUnmappedFields="true" truncatable="true">
+				    	      	<medi:field xmltag="CityName" />
+				    	      	<medi:field xmltag="State" />
+				    	      	<medi:field xmltag="Postal" />
+				    	      	<medi:field xmltag="Country" />
+				    	      	<medi:field xmltag="LocationQualifier" />
+				    	      	<medi:field xmltag="LocationIdentifier" />
+				    	      	<medi:field xmltag="CountrySubCode" />
+						</medi:segment>
+					</medi:segmentGroup>
+					
+					<!-- 2100F -->
+					<medi:segment minOccurs="0" maxOccurs="-1" segcode="NM1" xmltag="CustodialParent" ignoreUnmappedFields="true" truncatable="true">
+			    	      	<medi:field xmltag="EntityIDCode" />
+			    	      	<medi:field xmltag="EntityTypeQualfier" />
+			    	      	<medi:field xmltag="NameLast" />
+			    	      	<medi:field xmltag="NameFirst"/>
+			    	      	<medi:field xmltag="NameMiddle"/>
+			    	      	<medi:field xmltag="NamePrefix"/>
+			    	      	<medi:field xmltag="NameSuffix"/>
+			    	      	<medi:field xmltag="IDCodeQualifier"/>
+			    	      	<medi:field xmltag="ID"/>
+					</medi:segment>	
+					
+					<medi:segment minOccurs="0" maxOccurs="-1" segcode="PER" xmltag="CustodialParentCommunicationInformation" ignoreUnmappedFields="true" truncatable="true">
+				    	      	<medi:field xmltag="ContactFunctCode" />
+				    	      	<medi:field xmltag="Name" />
+				    	      	<medi:field xmltag="CommunicationNumberQualifier" />
+				    	      	<medi:field xmltag="CommunicationNumber"/>
+				    	      	<medi:field xmltag="CommunicationNumberQualifier"/>
+				    	      	<medi:field xmltag="CommunicationNumber"/>
+				    	      	<medi:field xmltag="CommunicationNumberQualifier"/>
+				    	      	<medi:field xmltag="CommunicationNumber"/>
+					</medi:segment>	
+							
+					<medi:segment minOccurs="0" maxOccurs="-1" segcode="N3" xmltag="CustodialParentStreetAddress" ignoreUnmappedFields="true" truncatable="true">
+				    	<medi:field xmltag="AddressInformation1" />
+				    	<medi:field xmltag="AddressInformation2" />
+					</medi:segment>		
+						<medi:segment minOccurs="0" maxOccurs="-1" segcode="N4" xmltag="CustodialParentCityStateZip" ignoreUnmappedFields="true" truncatable="true">
+				    	      	<medi:field xmltag="CityName" />
+				    	      	<medi:field xmltag="State" />
+				    	      	<medi:field xmltag="Postal" />
+				    	      	<medi:field xmltag="Country" />
+				    	      	<medi:field xmltag="LocationQualifier" />
+				    	      	<medi:field xmltag="LocationIdentifier" />
+				    	      	<medi:field xmltag="CountrySubCode" />
+						</medi:segment>		
+					
+					<!-- 2100G -->		
+					<medi:segmentGroup xmltag="ResponsiblePersons" minOccurs="0" maxOccurs="-1">
+						<medi:segment minOccurs="0" maxOccurs="-1" segcode="NM1" xmltag="ResponsiblePerson" ignoreUnmappedFields="true" truncatable="true">
+			    	      	<medi:field xmltag="EntityIDCode" />
+			    	      	<medi:field xmltag="EntityTypeQualfier" />
+			    	      	<medi:field xmltag="NameLast" />
+			    	      	<medi:field xmltag="NameFirst"/>
+			    	      	<medi:field xmltag="NameMiddle"/>
+			    	      	<medi:field xmltag="NamePrefix"/>
+			    	      	<medi:field xmltag="NameSuffix"/>
+			    	      	<medi:field xmltag="IDCodeQualifier"/>
+			    	      	<medi:field xmltag="ID"/>
+						</medi:segment>
+						
+						<medi:segment minOccurs="0" maxOccurs="-1" segcode="PER" xmltag="ResponsiblePersonCommunicationInformation" ignoreUnmappedFields="true" truncatable="true">
+				    	      	<medi:field xmltag="ContactFunctCode" />
+				    	      	<medi:field xmltag="Name" />
+				    	      	<medi:field xmltag="CommunicationNumberQualifier" />
+				    	      	<medi:field xmltag="CommunicationNumber"/>
+				    	      	<medi:field xmltag="CommunicationNumberQualifier"/>
+				    	      	<medi:field xmltag="CommunicationNumber"/>
+				    	      	<medi:field xmltag="CommunicationNumberQualifier"/>
+				    	      	<medi:field xmltag="CommunicationNumber"/>
+						</medi:segment>
+						
+						<medi:segment minOccurs="0" maxOccurs="-1" segcode="N3" xmltag="ResponsiblePersonStreetAddress" ignoreUnmappedFields="true" truncatable="true">
+				    		<medi:field xmltag="AddressInformation1" />
+				    		<medi:field xmltag="AddressInformation2" />
+						</medi:segment>
+						
+						<medi:segment minOccurs="0" maxOccurs="-1" segcode="N4" xmltag="ResponsiblePersonCityStateZip" ignoreUnmappedFields="true" truncatable="true">
+				    	     <medi:field xmltag="CityName" />
+				    	     <medi:field xmltag="State" />
+				    	     <medi:field xmltag="Postal" />
+				    	     <medi:field xmltag="Country" />
+				    	     <medi:field xmltag="LocationQualifier" />
+				    	     <medi:field xmltag="LocationIdentifier" />
+				    	     <medi:field xmltag="CountrySubCode" />
+						</medi:segment>	
+					</medi:segmentGroup>	
+					
+					<!-- 2100H -->
+					<medi:segment minOccurs="0" maxOccurs="-1" segcode="NM1" xmltag="DropOffLocation" ignoreUnmappedFields="true" truncatable="true">
+			    	      	<medi:field xmltag="EntityIDCode" />
+			    	      	<medi:field xmltag="EntityTypeQualfier" />
+			    	      	<medi:field xmltag="NameLast" />
+			    	      	<medi:field xmltag="NameFirst"/>
+			    	      	<medi:field xmltag="NameMiddle"/>
+			    	      	<medi:field xmltag="NamePrefix"/>
+			    	      	<medi:field xmltag="NameSuffix"/>
+			    	      	<medi:field xmltag="IDCodeQualifier"/>
+			    	      	<medi:field xmltag="ID"/>
+					</medi:segment>
+					<medi:segment minOccurs="0" maxOccurs="-1" segcode="N3" xmltag="DropOffLocationStreetAddress" ignoreUnmappedFields="true" truncatable="true">
+				    		<medi:field xmltag="AddressInformation1" />
+				    		<medi:field xmltag="AddressInformation2" />
+						</medi:segment>
+					
+					<medi:segment minOccurs="0" maxOccurs="-1" segcode="N4" xmltag="DropOffLocationCityStateZip" ignoreUnmappedFields="true" truncatable="true">
+				    	   	<medi:field xmltag="CityName" />
+				    	   	<medi:field xmltag="State" />
+				    	   	<medi:field xmltag="Postal" />
+				    	   	<medi:field xmltag="Country" />
+				    	   	<medi:field xmltag="LocationQualifier" />
+				    	   	<medi:field xmltag="LocationIdentifier" />
+				    	   	<medi:field xmltag="CountrySubCode" />
+					</medi:segment>
+					
+					<!-- 2200 -->
+					<medi:segmentGroup xmltag="DisabilityInformations" minOccurs="0" maxOccurs="-1">
+						<medi:segment minOccurs="0" maxOccurs="-1" segcode="DSB" xmltag="DisabilityInformation" ignoreUnmappedFields="true" truncatable="true">
+					    	   	<medi:field xmltag="DisabilityTypeCode" />
+					    	   	<medi:field xmltag="Quantity" />
+					    	   	<medi:field xmltag="OccupationCode" />
+					    	   	<medi:field xmltag="WorkIntyCode" />
+					    	   	<medi:field xmltag="ProductOptionCode" />
+					    	   	<medi:field xmltag="MonetaryAmount" />
+					    	   	<medi:field xmltag="ServIDQual" />
+					    	   	<medi:field xmltag="MedicalCodeValue" />
+						</medi:segment>
+						
+						<medi:segmentGroup xmltag="DisabilityEligibilityDates" minOccurs="0" maxOccurs="-1">
+				 			<medi:segment minOccurs="0" segcode="DTP" xmltag="DisabilityEligibilityDate" ignoreUnmappedFields="true" truncatable="true">
+				   			   <medi:field xmltag="DateTimeQualifier" />
+				      			<medi:field xmltag="DateTimePeriodFormatQualifier" />
+				       			<medi:field xmltag="DateTimePeriod" />
+							</medi:segment>
+						</medi:segmentGroup>
+					</medi:segmentGroup>
+					
+					<!-- 2300 STARTS-->
+					<medi:segmentGroup xmltag="HealthCoverages" minOccurs="0" maxOccurs="-1">
+						<medi:segment minOccurs="0" maxOccurs="-1" segcode="HD" xmltag="HealthCoverage" ignoreUnmappedFields="true" truncatable="true">
+					    	   	<medi:field xmltag="MaintenanceTypeCode" />
+					    	   	<medi:field xmltag="MaintainReasonCode" />
+					    	   	<medi:field xmltag="InsuranceLineCode" />
+					    	   	<medi:field xmltag="PlanCvrgDescription" />
+					    	   	<medi:field xmltag="CoverageLevelCode" />
+					    	   	<medi:field xmltag="Count" />
+					    	   	<medi:field xmltag="Count" />
+					    	   	<medi:field xmltag="UnderwriteDecideCode " />
+					    	   	<medi:field xmltag="CondRespCode" />
+						</medi:segment>
+						
+						<medi:segmentGroup xmltag="HealthCoverageDates" minOccurs="0" maxOccurs="-1">
+				 			<medi:segment minOccurs="0" segcode="DTP" xmltag="HealthCoverageDate" ignoreUnmappedFields="true" truncatable="true">
+				   			   <medi:field xmltag="DateTimeQualifier" />
+				      			<medi:field xmltag="DateTimePeriodFormatQualifier" />
+				       			<medi:field xmltag="DateTimePeriod" />
+							</medi:segment>
+						</medi:segmentGroup>
+						
+						<medi:segmentGroup xmltag="HealthCoverageAmounts" minOccurs="0" maxOccurs="-1">
+				 			<medi:segment minOccurs="0" segcode="AMT" xmltag="HealthCoverageAmount" ignoreUnmappedFields="true" truncatable="true">
+				   			   <medi:field xmltag="AmountQualCode" />
+				      			<medi:field xmltag="MonetaryAmount" />
+							</medi:segment>
+					</medi:segmentGroup>
+					
+						<medi:segmentGroup xmltag="HealthCoverageIdentifiers" minOccurs="0" maxOccurs="-1">
+								<medi:segment minOccurs="0" segcode="REF" xmltag="HealthCoverageIdentifier" ignoreUnmappedFields="true"  truncatable="true">
+								<medi:field xmltag="ReferenceIdentQual" />
+								<medi:field xmltag="ReferenceIdent" />
+							</medi:segment>
+						</medi:segmentGroup>
+						
+						<medi:segmentGroup xmltag="HealthCoverageIdentyCards" minOccurs="0" maxOccurs="-1">
+							<medi:segment minOccurs="0" segcode="IDC" xmltag="HealthCoverageIdentyCard"  ignoreUnmappedFields="true"  truncatable="true">
+								<medi:field xmltag="PlanCvrgDescription" />
+								<medi:field xmltag="IDCardTypeCode" />
+								<medi:field xmltag="Quantity" />
+								<medi:field xmltag="ActionCode" />
+							</medi:segment>
+						</medi:segmentGroup>
+						
+						
+					<!-- 2310 STARTS-->
+					<medi:segmentGroup xmltag="ProviderInformations" minOccurs="0" maxOccurs="-1">
+							<medi:segment minOccurs="0" segcode="LX" xmltag="ProviderInformation"  ignoreUnmappedFields="true"  truncatable="true">
+								<medi:field xmltag="AssignedNumber" />
+							</medi:segment>
+							
+							<medi:segment minOccurs="0" maxOccurs="-1" segcode="NM1" xmltag="ProviderName" ignoreUnmappedFields="true" truncatable="true">
+				    	      	<medi:field xmltag="EntityIDCode" />
+				    	      	<medi:field xmltag="EntityTypeQualfier" />
+				    	      	<medi:field xmltag="NameLast" />
+				    	      	<medi:field xmltag="NameFirst"/>
+				    	      	<medi:field xmltag="NameMiddle"/>
+				    	      	<medi:field xmltag="NamePrefix"/>
+				    	      	<medi:field xmltag="NameSuffix"/>
+				    	      	<medi:field xmltag="IDCodeQualifier"/>
+				    	      	<medi:field xmltag="ID"/>
+							</medi:segment>
+					<medi:segment minOccurs="0" maxOccurs="-1" segcode="N3" xmltag="ProviderStreetAddress" ignoreUnmappedFields="true" truncatable="true">
+				    		<medi:field xmltag="AddressInformation1" />
+				    		<medi:field xmltag="AddressInformation2" />
+						</medi:segment>
+					
+					<medi:segment minOccurs="0" maxOccurs="-1" segcode="N4" xmltag="ProviderCityStateZip" ignoreUnmappedFields="true" truncatable="true">
+				    	   	<medi:field xmltag="CityName" />
+				    	   	<medi:field xmltag="State" />
+				    	   	<medi:field xmltag="Postal" />
+				    	   	<medi:field xmltag="Country" />
+				    	   	<medi:field xmltag="LocationQualifier" />
+				    	   	<medi:field xmltag="LocationIdentifier" />
+				    	   	<medi:field xmltag="CountrySubCode" />
+					</medi:segment>
+						
+						<medi:segment minOccurs="0" maxOccurs="-1" segcode="PER" xmltag="ProviderCommunicationInformation" ignoreUnmappedFields="true" truncatable="true">
+				    	      	<medi:field xmltag="ContactFunctCode" />
+				    	      	<medi:field xmltag="Name" />
+				    	      	<medi:field xmltag="CommunicationNumberQualifier" />
+				    	      	<medi:field xmltag="CommunicationNumber"/>
+				    	      	<medi:field xmltag="CommunicationNumberQualifier"/>
+				    	      	<medi:field xmltag="CommunicationNumber"/>
+				    	      	<medi:field xmltag="CommunicationNumberQualifier"/>
+				    	      	<medi:field xmltag="CommunicationNumber"/>
+						</medi:segment>
+							
+						<medi:segment minOccurs="0" maxOccurs="-1" segcode="PLA" xmltag="ProviderChangeReason" ignoreUnmappedFields="true" truncatable="true">
+				    	   	<medi:field xmltag="ActionCode" />
+				    	   	<medi:field xmltag="EntityIDCode" />
+				    	   	<medi:field xmltag="Date" />
+				    	   	<medi:field xmltag="Time" />
+				    	   	<medi:field xmltag="MaintainReasonCode" />
+						</medi:segment>
+					</medi:segmentGroup>
+					<!-- 2310 ENDS-->
+					
+					
+					<!-- 2320 STARTS-->
+					<medi:segmentGroup xmltag="CoordinationOfBenefits" minOccurs="0" maxOccurs="-1">
+						<medi:segment minOccurs="0" maxOccurs="-1" segcode="PLA" xmltag="CoordinationOfBenefit" ignoreUnmappedFields="true" truncatable="true">
+				    	   	<medi:field xmltag="PayerRespSeqNoCode" />
+				    	   	<medi:field xmltag="ReferenceIdent" />
+				    	   	<medi:field xmltag="BenefitsCoordCode" />
+				    	   	<medi:field xmltag="ServiceTypeCode" />
+						</medi:segment>
+						<medi:segmentGroup xmltag="CoordinationOfBenefitIdentifiers" minOccurs="0" maxOccurs="-1">
+								<medi:segment minOccurs="0" segcode="REF" xmltag="CoordinationOfBenefitIdentifier"  ignoreUnmappedFields="true"  truncatable="true">
+								<medi:field xmltag="ReferenceIdentQual" />
+								<medi:field xmltag="ReferenceIdent" />
+							</medi:segment>
+						</medi:segmentGroup>
+							<medi:segmentGroup xmltag="CoordinationOfBenefitDates" minOccurs="0" maxOccurs="-1">
+								 <medi:segment minOccurs="0" segcode="DTP" xmltag="CoordinationOfBenefitDate"  ignoreUnmappedFields="true"  truncatable="true">
+								      <medi:field xmltag="DateTimeQualifier" />
+								      <medi:field xmltag="DateTimePeriodFormatQualifier" />
+								      <medi:field xmltag="DateTimePeriod" />
+								</medi:segment>
+							</medi:segmentGroup>
+							
+							<!-- 2330 STARTS-->
+							<medi:segmentGroup xmltag="COBRelatedEntities" minOccurs="0" maxOccurs="-1">
+									<medi:segment minOccurs="0" maxOccurs="-1" segcode="NM1" xmltag="COB" ignoreUnmappedFields="true" truncatable="true">
+										<medi:field xmltag="EntityIDCode" />
+										<medi:field xmltag="EntityTypeQualfier" />
+										<medi:field xmltag="NameLast" />
+										<medi:field xmltag="NameFirst" />
+										<medi:field xmltag="NameMiddle" />
+										<medi:field xmltag="NamePrefix" />
+										<medi:field xmltag="NameSuffix" />
+										<medi:field xmltag="IDCodeQualifier" />
+										<medi:field xmltag="ID" />
+									</medi:segment>
+									<medi:segment minOccurs="0" maxOccurs="-1" segcode="N3" xmltag="COBStreetAddress" ignoreUnmappedFields="true" truncatable="true">
+										<medi:field xmltag="AddressInformation1" />
+										<medi:field xmltag="AddressInformation2" />
+									</medi:segment>
+								
+									<medi:segment minOccurs="0" maxOccurs="-1" segcode="N4" xmltag="COBCityStateZip" ignoreUnmappedFields="true" truncatable="true">
+										<medi:field xmltag="CityName" />
+										<medi:field xmltag="State" />
+										<medi:field xmltag="Postal" />
+										<medi:field xmltag="Country" />
+										<medi:field xmltag="LocationQualifier" />
+										<medi:field xmltag="LocationIdentifier" />
+										<medi:field xmltag="CountrySubCode" />
+									</medi:segment>
+								
+									<medi:segment minOccurs="0" maxOccurs="-1" segcode="PER" xmltag="COBCommunicationInformation" ignoreUnmappedFields="true" truncatable="true">
+										<medi:field xmltag="ContactFunctCode" />
+										<medi:field xmltag="Name" />
+										<medi:field xmltag="CommunicationNumberQualifier" />
+										<medi:field xmltag="CommunicationNumber" />
+										<medi:field xmltag="CommunicationNumberQualifier" />
+										<medi:field xmltag="CommunicationNumber" />
+										<medi:field xmltag="CommunicationNumberQualifier" />
+										<medi:field xmltag="CommunicationNumber" />
+									</medi:segment>
+								</medi:segmentGroup>
+							<!-- 2330 ENDS-->
+					</medi:segmentGroup>
+					<!-- 2320 ENDS-->
+					</medi:segmentGroup>
+					<!-- 2300 ENDS-->
+					
+					<!-- Additional Reporting Categories - STARTS -->
+					<medi:segment minOccurs="0" segcode="LS" xmltag="AdditionalReportingCategoriesStart" ignoreUnmappedFields="true" truncatable="true">
+				   			   <medi:field xmltag="LoopIDCode" />
+					</medi:segment>
+					
+					<!-- 2700 -->
+					<medi:segmentGroup xmltag="MemberReportingCategories" minOccurs="0" maxOccurs="-1">
+					
+						<medi:segment minOccurs="0" segcode="LX" xmltag="MemberReportingCategoryAssignedNumber" ignoreUnmappedFields="true" truncatable="true">
+				   			   <medi:field xmltag="AssignedNumber" />
+						</medi:segment>
+						
+						 <medi:segment minOccurs="0" segcode="N1" xmltag="MemberReportingCategory" ignoreUnmappedFields="true" truncatable="true">
+				      			<medi:field xmltag="EntityIDCode" />
+				      			<medi:field xmltag="Name" />
+						</medi:segment>
+				
+						<medi:segment minOccurs="0" segcode="REF" xmltag="MemberReportingCategoryReference" ignoreUnmappedFields="true"  truncatable="true">
+				      			<medi:field xmltag="ReferenceIdentQual" />
+				      			<medi:field xmltag="ReferenceIdent" />
+						</medi:segment>
+						
+						 <medi:segment minOccurs="0" segcode="DTP" xmltag="MemberReportingCategoryDate" ignoreUnmappedFields="true"  truncatable="true">
+				      			<medi:field xmltag="DateTimeQualifier" />
+				      			<medi:field xmltag="DateTimePeriodFormatQualifier" />
+				      			<medi:field xmltag="DateTimePeriod" />
+						</medi:segment>
+					
+					</medi:segmentGroup>
+					
+					<!-- Additional Reporting Categories - ENDS -->
+					<medi:segment minOccurs="0" segcode="LE" xmltag="AdditionalReportingCategoriesEnd" ignoreUnmappedFields="true" truncatable="true">
+				   			   <medi:field xmltag="LoopIDCode" />
+					</medi:segment>
+					
+				</medi:segmentGroup>
+				
+				<medi:segment minOccurs="0" segcode="SE" xmltag="BenefitEnrollmentMaintenanceFooter"  ignoreUnmappedFields="true" truncatable="true">
+			    <medi:field xmltag="TransactionSetIdentifierCode" />
+			   				<medi:field xmltag="TransactionSetControlNumber" />
+			    </medi:segment>
+			</medi:segmentGroup>
+				
+			<medi:segment minOccurs="0" segcode="GE" xmltag="BenefitEnrollmentRequestFooter"  ignoreUnmappedFields="true" truncatable="true">
+			    <medi:field xmltag="ZFA" />
+			    </medi:segment>
+		</medi:segmentGroup>
+		
+		<medi:segment segcode="IEA" xmltag="ISAFooter" minOccurs="0"  ignoreUnmappedFields="true" truncatable="true">
+		     <medi:field xmltag="CCC" />
+		     </medi:segment>
+	</medi:segments>
+
+</medi:edimap>
