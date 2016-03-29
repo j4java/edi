@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<medi:edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.6.xsd">
+
+	<medi:description name="999 To XML" version="1.0" />
+
+	<medi:delimiters segment="&#10;" field="*" component="^" sub-component="#" />
+
+	<medi:segments xmltag="InterChangeAcknowledgment">
+		<medi:segment minOccurs="0" maxOccurs="-1" segcode="ISA" xmltag="ISAHeader" ignoreUnmappedFields="true" truncatable="true">
+			<medi:field xmltag="AuthorziationInformationQualifier" />
+			<medi:field xmltag="AuthorziationInformation" />
+			<medi:field xmltag="SecurityInformationQualifier" />
+			<medi:field xmltag="SecurityInformation" />
+			<medi:field xmltag="InterchangeIDQualifier" />
+			<medi:field xmltag="InterchangeSenderID" />
+			<medi:field xmltag="InterchangeIDQualifier" />
+			<medi:field xmltag="InterchangeReceiverID" />
+			<medi:field xmltag="InterchangeDate" />
+			<medi:field xmltag="InterchangeTime" />
+			<medi:field xmltag="RepetitionSeparator" />
+			<medi:field xmltag="InterchangeControlVersionNumber" />
+			<medi:field xmltag="InterchangeControlNumber" />
+			<medi:field xmltag="AcknowledgmentRequested" />
+			<medi:field xmltag="InterchangeUsageIndicator" />
+			<medi:field xmltag="ComponentElementSeparator" />
+		</medi:segment>
+		
+		<medi:segment minOccurs="0" maxOccurs="-1" segcode="TA1" xmltag="InterchangeAcknowledgement" ignoreUnmappedFields="true" truncatable="true">
+			<medi:field xmltag="InterCtrlNumber" />
+			<medi:field xmltag="InterchangeDate" />
+			<medi:field xmltag="InterchangeTime" />
+			<medi:field xmltag="InterchangeAckCode" />
+			<medi:field xmltag="InterchangeNoteCode" />
+		</medi:segment>
+		
+		<medi:segmentGroup xmltag="FunctionalGroups" maxOccurs="-1">
+			<medi:segment minOccurs="0" maxOccurs="-1" segcode="GS"	xmltag="999GSHeader" ignoreUnmappedFields="true" truncatable="true">
+			   <medi:field xmltag="FunctionalIDCode" />
+			   <medi:field xmltag="ApplicationSendsCode" />
+			   <medi:field xmltag="ApplicationRecsCode" />
+			   <medi:field xmltag="Date" />
+			   <medi:field xmltag="Time" />
+			   <medi:field xmltag="GroupCtrlNumber" />
+			   <medi:field xmltag="ResponsibleAgencyCode" />
+			   <medi:field xmltag="ReleaseIDCode" />
+			</medi:segment>
+			
+			
+			<medi:segmentGroup minOccurs="0" xmltag="Transactions" maxOccurs="-1">
+			    	<medi:segment minOccurs="0" maxOccurs="-1" segcode="ST"	xmltag="TransactionHeader" ignoreUnmappedFields="true" truncatable="true">
+			    	      	<medi:field xmltag="TransactionSetIdentifierCode" />
+			   				<medi:field xmltag="TransactionSetControlNumber" />
+			  				<medi:field xmltag="ImplementationConventionReference" />
+			    	</medi:segment>
+			    	
+			    	<medi:segment minOccurs="0" maxOccurs="-1" segcode="AK1"	xmltag="AK1FunctionalGroupResponseHeader" ignoreUnmappedFields="true" truncatable="true">
+			    	      	<medi:field xmltag="FunctionalIdentifierCode" />
+			   				<medi:field xmltag="FunctionalControlNumber" />
+			  				<medi:field xmltag="ImplementationConventionReference" />
+			    	</medi:segment>
+			    	
+			    	<medi:segmentGroup xmltag="AK2FunctionalGroupResponseHeaders" minOccurs="0" maxOccurs="-1">
+			    		<medi:segment minOccurs="0" maxOccurs="-1" segcode="AK2"	xmltag="AK2FunctionalGroupResponseHeader" ignoreUnmappedFields="true" truncatable="true">
+			    	      	<medi:field xmltag="TransactionSetIdentifierCode" />
+			   				<medi:field xmltag="TransactionSetControlNumber" />
+			  				<medi:field xmltag="ImplementationConventionReference" />
+			    		</medi:segment>
+			    		
+			    		<medi:segmentGroup xmltag="ErrorIdentifications" minOccurs="0" maxOccurs="-1">
+				    		<medi:segment minOccurs="0" maxOccurs="-1" segcode="IK3"	xmltag="ErrorIdentification" ignoreUnmappedFields="true" truncatable="true">
+				    	      	<medi:field xmltag="SegmentIDcode" />
+				   				<medi:field xmltag="SegmentPosinTS" />
+				  				<medi:field xmltag="LoopIDCode" />
+				  				<medi:field xmltag="ImpleSegSynErCode" />
+				    		</medi:segment>
+				    		
+				    		<medi:segment minOccurs="0" maxOccurs="-1" segcode="CTX"	xmltag="SegmentContext" ignoreUnmappedFields="true" truncatable="true">
+				    	      	<medi:field xmltag="ContextIdentification" />
+				   				<medi:field xmltag="SegmentIDcode" />
+				   				<medi:field xmltag="SegmentPosinTS" />
+				  				<medi:field xmltag="LoopIDCode" />
+				  				<medi:field xmltag="PositioninSegment" />
+				  				<medi:field xmltag="ReferenceinSegment" />
+				    		</medi:segment>
+				    		<medi:segment minOccurs="0" maxOccurs="-1" segcode="CTX"	xmltag="BusinessUnitIdentifier" ignoreUnmappedFields="true" truncatable="true">
+				    	      	<medi:field xmltag="ContextIdentification" />
+				   				<medi:field xmltag="SegmentIDcode" />
+				   				<medi:field xmltag="SegmentPosinTS" />
+				  				<medi:field xmltag="LoopIDCode" />
+				  				<medi:field xmltag="PositioninSegment" />
+				  				<medi:field xmltag="ReferenceinSegment" />
+				    		</medi:segment>
+				    		
+				    		<medi:segmentGroup xmltag="ImplementationDataElementNotes" minOccurs="0" maxOccurs="-1">
+				    			<medi:segment minOccurs="0" maxOccurs="-1" segcode="IK4"	xmltag="ImplementationDataElementNote" ignoreUnmappedFields="true" truncatable="true">
+					    	      	<medi:field xmltag="PositioninSegment" />
+					   				<medi:field xmltag="DataElemntRefNumber" />
+					  				<medi:field xmltag="ImpleDataSynErCode" />
+					  				<medi:field xmltag="CopyofBadDataElemnt" />
+				    			</medi:segment>
+				    			
+				    			<medi:segment minOccurs="0" maxOccurs="-1" segcode="CTX"	xmltag="ElementContext" ignoreUnmappedFields="true" truncatable="true">
+				    	      	<medi:field xmltag="ContextIdentification" />
+				   				<medi:field xmltag="SegmentIDcode" />
+				   				<medi:field xmltag="SegmentPosinTS" />
+				  				<medi:field xmltag="LoopIDCode" />
+				  				<medi:field xmltag="PositioninSegment" />
+				  				<medi:field xmltag="ReferenceinSegment" />
+				    		</medi:segment>
+				    		</medi:segmentGroup>
+			    		</medi:segmentGroup>
+			    		<medi:segment minOccurs="0" maxOccurs="-1" segcode="IK5"	xmltag="AK2FunctionalGroupResponseTrailer" ignoreUnmappedFields="true" truncatable="true">
+					    	      	<medi:field xmltag="TSAckCode" />
+					   				<medi:field xmltag="ImpleTSSynErCode" />
+					  				<medi:field xmltag="ImpleTSSynErCode" />
+					  				<medi:field xmltag="ImpleTSSynErCode" />
+					  				<medi:field xmltag="ImpleTSSynErCode" />
+					  				<medi:field xmltag="ImpleTSSynErCode" />
+				    			</medi:segment>
+			    		
+			    	</medi:segmentGroup>
+			    	
+			    	
+				    			
+				    <medi:segment minOccurs="0" maxOccurs="-1" segcode="AK9"	xmltag="AK1FunctionalGroupResponseTrailer" ignoreUnmappedFields="true" truncatable="true">
+					    	      	<medi:field xmltag="FunctGroupAckCode" />
+					   				<medi:field xmltag="NumberofTSIncluded" />
+					  				<medi:field xmltag="NumberofReceivedTS" />
+					  				<medi:field xmltag="NumberofAcceptedTS" />
+					  				<medi:field xmltag="FunctGroupErrorCode" />
+					  				<medi:field xmltag="FunctGroupErrorCode" />
+					  				<medi:field xmltag="FunctGroupErrorCode" />
+					  				<medi:field xmltag="FunctGroupErrorCode" />
+					  				<medi:field xmltag="FunctGroupErrorCode" />
+				    			</medi:segment>
+			    	
+			</medi:segmentGroup>
+			
+			<medi:segment minOccurs="0" segcode="SE" xmltag="TransactionFooter"  ignoreUnmappedFields="true" truncatable="true">
+			    <medi:field xmltag="TransactionSetIdentifierCode" />
+			   				<medi:field xmltag="TransactionSetControlNumber" />
+			    </medi:segment>
+			
+			
+			
+			<medi:segment minOccurs="0" segcode="GE" xmltag="999GSFooter"  ignoreUnmappedFields="true" truncatable="true">
+			    <medi:field xmltag="NumberofIncludedTransactions" />
+			     <medi:field xmltag="GrpCtrlNumber" />
+			    </medi:segment>
+			
+		</medi:segmentGroup>
+		<medi:segment segcode="IEA" xmltag="ISAFooter" minOccurs="0"  ignoreUnmappedFields="true" truncatable="true">
+			 <medi:field xmltag="NumberofIncludedFunctionalGroups" />
+		     <medi:field xmltag="InterCtrlNumber" />
+		     </medi:segment>
+	</medi:segments>
+	
+</medi:edimap>
